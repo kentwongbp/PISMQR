@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PISM - Unified Menu</title>
+    <style>
+        :root { --pism-red: #8B0000; --pism-gold: #D4AF37; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .header img { width: 80px; }
+        
+        /* Search Bar */
+        #vendorSearch { width: 100%; padding: 15px; border-radius: 25px; border: 1px solid #ddd; margin-bottom: 20px; box-sizing: border-box; font-size: 16px; }
+
+        /* PISM Direct Section */
+        .management-order { background: var(--pism-red); color: white; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .btn-order { background: var(--pism-gold); color: black; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* Vendor Grid */
+        .vendor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .vendor-card { background: white; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-decoration: none; color: #333; transition: 0.2s; }
+        .vendor-card:active { transform: scale(0.95); }
+        .vendor-card h3 { margin: 10px 0 5px 0; font-size: 14px; }
+        .vendor-card p { font-size: 11px; color: #777; margin: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>Perak Ipoh Stables Market</h2>
+        <p>Select a vendor to start ordering</p>
+    </div>
+
+    <input type="text" id="vendorSearch" onkeyup="filterVendors()" placeholder="Search food or vendor name...">
+
+    <div class="management-order">
+        <h3>PISM Signature Items</h3>
+        <p>Order drinks and merchandise directly</p>
+        <a href="YOUR_BIGPOS_LINK_HERE" class="btn-order">ORDER NOW</a>
+    </div>
+
+    <div class="vendor-grid" id="vendorGrid">
+        <a href="VENDOR_1_LINK" class="vendor-card" data-category="Malay Food Laksa">
+            <h3>Mak Cik Laksa</h3>
+            <p>Mari Lane • Malay</p>
+        </a>
+
+        <a href="VENDOR_2_LINK" class="vendor-card" data-category="Coffee Western">
+            <h3>Stables Coffee</h3>
+            <p>Mata Lane • Drinks</p>
+        </a>
+        
+        </div>
+
+    <script>
+        function filterVendors() {
+            let input = document.getElementById('vendorSearch').value.toLowerCase();
+            let cards = document.getElementsByClassName('vendor-card');
+            
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                let category = cards[i].getAttribute('data-category').toLowerCase();
+                if (name.includes(input) || category.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
